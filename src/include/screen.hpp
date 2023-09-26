@@ -10,6 +10,7 @@
 #include <SDL2/SDL_pixels.h>
 #include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_render.h>
+#include <SDL2/SDL_scancode.h>
 #include <SDL2/SDL_surface.h>
 #include <SDL2/SDL_ttf.h>
 #include <cmath>
@@ -88,9 +89,10 @@ class Screen {
                 exit(0);
             }
             if (this->e.type == SDL_KEYDOWN) {
-                if (this->e.key.type == SDLK_BACKSPACE)
+                if (this->e.key.keysym.scancode == SDL_SCANCODE_BACKSPACE)
                     this->textBoxes.at(0)->deleteCharacter();
-                this->textBoxes.at(0)->text += this->e.key.keysym.sym;
+                else
+                    this->textBoxes.at(0)->addCharacter(this->e.key.keysym.sym);
             }
         }
     }

@@ -35,6 +35,12 @@ class TextBox {
         this->cursorPosition += direction;
         this->preventCursorOutOfBounds();
     }
-    void deleteCharacter() { this->text.erase(this->cursorPosition, 1); }
-    void addCharacter(char character) { this->text.insert(this->cursorPosition, 1, character); }
+    void deleteCharacter() {
+        this->text.erase(this->cursorPosition, 1);
+        this->moveCursor(-1);
+    }
+    void addCharacter(char character) {
+        this->text.insert(this->cursorPosition, 1, character);
+        this->moveCursor(1);
+    }
 };
